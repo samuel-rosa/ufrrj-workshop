@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+# Resources
+
+## Reproducible project environment
+
+### Using `packrat` with git for (better) version control
+
+> Its sole purpose is to keep track of what versions of packages (and R itself) you are running for any
+> given project.
+
+* Step-by-step how to use `packrat`
+
+https://www.joelnitta.com/post/packrat/
+
+### Package Management for Reproducible R Code
+
+> "Any programming environment should be optimized for its task, and not all tasks are alike."
+
+* project environment
+* reproducible environment
+* package dependencies
+* library-per-project approach
+* `packrat`
+
+https://rviews.rstudio.com/2018/01/18/package-management-for-reproducible-r-code/
