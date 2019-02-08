@@ -1,6 +1,6 @@
 # Análise de dados e redação científica colaborativos -- R & CIA
 
-Local: Universidade Federal Rural do Rio de Janeiro (UFRRJ)<br>
+Local: Programa de Pós-Graduação em Educação Agrícola (PPGA) da Universidade Federal Rural do Rio de Janeiro (UFRRJ)<br>
 Data: 19--21 de fevereiro de 2019<br>
 Carga horária: 16 horas<br>
 Público: mestrandos, doutorandos, pós-doutorandos e professores
