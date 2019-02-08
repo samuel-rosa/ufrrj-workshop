@@ -17,10 +17,10 @@ Os tópicos a serem abordados na oficina são os seguintes:
     + Definição do problema
 2. Preparação do ambiente de trabalho
     + Instalação de programas
-    + Estrutura do diretório de arquivos
-    + Controle de versão e gerenciamento de código fonte: [git][git]
+    + Estrutura de diretórios e arquivos
     + Projeto do [RStudio][rstudio]
-    + Gerenciamento de pacotes: [`packrat`][packrat]
+    + [git][git] -- Controle de versão e gerenciamento de código fonte
+    + [`packrat`][packrat] -- Gerenciamento de pacotes
 3. Ambiente de análise de dados -- [R][r]
     + Linguagem de marcação e caderno de anotações: [`rmarkdown`][rmarkdown]
     + O universo de Hadley Wickham: [`tidyverse`][tidyverse]
