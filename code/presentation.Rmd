@@ -1,0 +1,147 @@
+---
+title: "Análise de dados e redação científica colaborativos -- R & CIA"
+author: "Prof. Dr. Alessandro Samuel-Rosa"
+date: "19--21 de fevereiro de 2019"
+output:
+  ioslides_presentation:
+    logo: ../img/logo-utfpr.png
+    widescreen: true
+    smaller: true
+    css: styles-slides.css
+---
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('slide:not(.title-slide, .backdrop, .segue)').append('<footer></footer>');
+    $('footer').attr('label', 'Análise de dados e redação científica colaborativos -- R & CIA');
+  })
+</script>
+
+# Aquecimento ou preliminares
+
+## Definição do problema
+
+
+# Preparação do ambiente de trabalho
+
+## Instalação de programas
+
+Você precisa instalar os seguintes programas em seu computador:
+
+* R: https://www.r-project.org/
+* RStudio: https://www.rstudio.com/
+* git: https://git-scm.com/
+* pandoc: https://github.com/jgm/pandoc/releases/
+* latex: https://www.latex-project.org/
+
+## Estrutura de diretórios e arquivos
+
+Agora vamos criar a seguinte estrutura de diretórios e arquivos:
+
+```bash
+projeto
+|- code/             # código fonte
+|
+|- data/             # dados usados no projeto
+|  |- r/             # dados no formato *.RDA
+|  |- raster/        # dados matriciais (GeoTIFF)
+|  |- vector/        # dados vetoriais (SHP)
+|
+|- docs/             # documentos do projeto
+|
+|- res/              # resultados do projeto
+|  |- fig/           # figuras (PNG, TIFF, JPEG, SVG)
+|  |- tab/           # tabelas (CSV, TSV)
+|
+|- README.md         # descrição do projeto
+```
+
+## Projeto do RStudio
+
+O próximo passo consiste em criar um projeto do RStudio para gerenciar os arquivos do nosso projeto.
+
+Acesse
+
+`Arquivo > Novo projeto > Diretório existente`
+
+e navegue até o diretório recém criado -- `projeto`.
+
+Pressione
+
+`Criar projeto`
+
+Pronto!
+
+Toda a estrutura de diretórios e arquivos recém criada aparecerá no painel direito inferior do RStudio.
+
+## git | Controle de versão e gerenciamento de código fonte
+
+## git | Configuração
+
+Após a instalação do git em seu computador, e antes do seu primeiro uso, é preciso configurar duas variáveis
+globais: nome do usuário e endereço de e-mail.
+
+Acesse o Terminal, localizado ao lado do Console, e emita os seguintes comando -- substituindo com seus dados 
+os campos pertinentes:
+
+```{bash, eval=FALSE}
+git config --global user.name 'Escreva Seu Nome aqui'
+git config --global user.email 'escrevaseu@email.aqui'
+```
+
+Mais tarde veremos que isso permite identificar, quando trabalhamos em duas ou mais pessoas no mesmo projeto,
+quem fez cada alteração e quantas alterações cada um fez -- uma maneira de definir a ordem dos autores?
+
+## git | Inicialização
+
+Existem duas maneiras de habilitar o git num projeto.
+
+A primeira consiste em acessar o Terminal, localizado ao lado do Console, e emitir o seguinte comando:
+
+```{bash, eval=FALSE}
+git init
+```
+
+Para a segunda, acesse
+
+`Ferramentas > Opções do Projeto... > Git/SVN`
+
+e escolha o git como sistema de controle de versão do projeto.
+
+## `packrat` | Gerenciamento de pacotes
+
+Using `packrat` with git for (better) version control
+
+> Its sole purpose is to keep track of what versions of packages (and R itself) you are running for any
+> given project.
+
+* Step-by-step how to use `packrat`
+
+https://www.joelnitta.com/post/packrat/
+
+Package Management for Reproducible R Code
+
+> "Any programming environment should be optimized for its task, and not all tasks are alike."
+
+* project environment
+* reproducible environment
+* package dependencies
+* library-per-project approach
+* `packrat`
+
+https://rviews.rstudio.com/2018/01/18/package-management-for-reproducible-r-code/
+
+## packrat | Habilitação
+
+Para habilitar o gerenciamento de pacotes via `packrat` no projeto, acesse
+
+`Ferramentas > Opções do Projeto... > Packrat`
+
+ou
+
+`Pacotes > Packrat`
+
+e marque a opção `Usar packrat com este projeto`.
+
+Também marque a opção `Git ignore packrat sources`.
