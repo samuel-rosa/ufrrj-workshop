@@ -39,22 +39,22 @@ Você precisa instalar os seguintes programas em seu computador:
 
 Agora vamos criar a seguinte estrutura de diretórios e arquivos:
 
-```bash
+```{bash, eval=FALSE}
 projeto
-|- code/             # código fonte
+|- code/            # código fonte
 |
-|- data/             # dados usados no projeto
-|  |- r/             # dados no formato *.RDA
-|  |- raster/        # dados matriciais (GeoTIFF)
-|  |- vector/        # dados vetoriais (SHP)
+|- data/            # dados usados no projeto
+|  |- r/            # dados no formato *.RDA
+|  |- raster/       # dados matriciais (GeoTIFF)
+|  |- vector/       # dados vetoriais (SHP)
 |
-|- docs/             # documentos do projeto
+|- docs/            # documentos do projeto
 |
-|- res/              # resultados do projeto
-|  |- fig/           # figuras (PNG, TIFF, JPEG, SVG)
-|  |- tab/           # tabelas (CSV, TSV)
+|- res/             # resultados do projeto
+|  |- fig/          # figuras (PNG, TIFF, JPEG, SVG)
+|  |- tab/          # tabelas (CSV, TSV)
 |
-|- README.md         # descrição do projeto
+|- tmp/             # arquivos temporários irrelevantes
 ```
 
 ## Projeto do RStudio
@@ -73,31 +73,40 @@ Pressione
 
 Pronto!
 
-Toda a estrutura de diretórios e arquivos recém criada aparecerá no painel direito inferior do RStudio.
+Toda a estrutura de diretórios e arquivos recém criada aparecerá no painel direito inferior do RStudio. Ali 
+você encontrará um arquivo chamado `projeto.Rproj`, contendo as definições do projeto.
+
+# git | Controle de versão e gerenciamento de código fonte
 
 ## git | Controle de versão e gerenciamento de código fonte
 
-## git | Configuração
-
-Após a instalação do git em seu computador, e antes do seu primeiro uso, é preciso configurar duas variáveis
-globais: nome do usuário e endereço de e-mail.
-
-Acesse o Terminal, localizado ao lado do Console, e emita os seguintes comando -- substituindo com seus dados 
-os campos pertinentes:
-
-```{bash, eval=FALSE}
-git config --global user.name 'Escreva Seu Nome aqui'
-git config --global user.email 'escrevaseu@email.aqui'
+```{bash, eval = FALSE}
+projeto
+|- docs/
+|  |- artigo.odt
+|  |- artigo-v2.odt
+|  |- artigo-v3.odt
+|  |- artigo-v3-orientador.odt
+|  |- artigo-v3-orientador-v2.odt
+|  |- artigo-v4.odt
+|  |- artigo-v4-modificado.odt
+|  |- artigo-v4-modificado-mais.odt
+|  |- ...
+|  |- artigo-v15-agora-vai.odt
+|  |- artigo-v15-ainda-nao-deu.odt
+|  |- artigo-v16.odt
+|  |- artigo-v16-modificado.odt
+|  |- artigo-v16-submetido.odt
+|  |- artigo-v16-negado-sugestoes-revisores.odt
+|  |- artigo-v17.odt
 ```
 
-Mais tarde veremos que isso permite identificar, quando trabalhamos em duas ou mais pessoas no mesmo projeto,
-quem fez cada alteração e quantas alterações cada um fez -- uma maneira de definir a ordem dos autores?
+## git -- Inicialização
 
-## git | Inicialização
+Existem duas maneiras de habilitar o `git` num projeto.
 
-Existem duas maneiras de habilitar o git num projeto.
-
-A primeira consiste em acessar o Terminal, localizado ao lado do Console, e emitir o seguinte comando:
+A primeira consiste em acessar o Terminal no RStudio, localizado ao lado do Console, e emitir o seguinte 
+comando:
 
 ```{bash, eval=FALSE}
 git init
@@ -107,32 +116,68 @@ Para a segunda, acesse
 
 `Ferramentas > Opções do Projeto... > Git/SVN`
 
-e escolha o git como sistema de controle de versão do projeto.
+e escolha o `git` como sistema de controle de versão do projeto. Após a reinicialização do RStudio, uma nova 
+aba será criada no painel superior direito do RStudio. Logo falaremos sobre ele!
 
-## `packrat` | Gerenciamento de pacotes
+Dentre os diretórios e arquivos do projeto você encontrará um novo arquivo chamado `.gitignore`. Logo falaremos
+sobre ele!
 
-Using `packrat` with git for (better) version control
+## `git` -- Configuração
 
-> Its sole purpose is to keep track of what versions of packages (and R itself) you are running for any
-> given project.
+Antes do primeiro uso do `git`, é preciso configurar duas variáveis globais: nome do usuário e endereço de 
+e-mail.
 
-* Step-by-step how to use `packrat`
+Acesse o Terminal do RStudio, localizado ao lado do Console, e emita os seguintes comando -- substituindo com 
+seus dados os campos pertinentes:
 
-https://www.joelnitta.com/post/packrat/
+```{bash, eval=FALSE}
+git config --global user.name 'Escreva Seu Nome aqui'
+git config --global user.email 'escreva-seu@email.aqui'
+```
 
-Package Management for Reproducible R Code
+Mais tarde veremos que isso permite identificar, quando trabalhamos em duas ou mais pessoas no mesmo projeto,
+quem fez cada alteração e quantas alterações cada um fez -- uma maneira de definir a ordem dos autores?
 
-> "Any programming environment should be optimized for its task, and not all tasks are alike."
+## `git` -- Funcionamento
 
-* project environment
-* reproducible environment
-* package dependencies
-* library-per-project approach
-* `packrat`
+A aba Git, localizada no painel superior direito do RStudio, indica os ___aquivos___ do projeto que podem ser 
+submetidos aos sistema de controle de versão. São dois arquivos:
 
-https://rviews.rstudio.com/2018/01/18/package-management-for-reproducible-r-code/
+`.gitignore`: definições do projeto.
 
-## packrat | Habilitação
+`projeto.Rproj`: lista dos arquivos que devem ser ignorados pelo sistema de controle de versão.
+
+```{bash, eval=FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+```
+
+Habilite as caixas sob o item `Staged` para adicionar os arquivos ao monitoramento do `git`.
+
+Acesse o item `Commit` e insira uma mensagem descrevendo a edição feita no projeto, por exemplo: 
+
+```{r, eval=FALSE}
+"Inicialização de projeto do RStudio usando git para controle de versão e gerenciamento de código fonte"
+```
+
+# packrat | Gerenciamento de pacotes e depedências
+
+## `packrat` | Gerenciamento de pacotes e depedências
+
+> "Any programming environment should be optimized for its task, and not all tasks are alike." 
+> ([Cole Arendt, 2018][arendt])
+
+[arendt]: https://rviews.rstudio.com/2018/01/18/package-management-for-reproducible-r-code/
+
+* Dois problemas principais:
+    - Como criar um ambiente de programação reprodutível?
+    - Como isolar as dependências dos pacotes de um projeto?
+* Solução:
+    - Criando uma biblioteca de pacotes e suas dependências por projeto!
+
+## `packrat` -- Habilitação
 
 Para habilitar o gerenciamento de pacotes via `packrat` no projeto, acesse
 
@@ -144,4 +189,67 @@ ou
 
 e marque a opção `Usar packrat com este projeto`.
 
-Também marque a opção `Git ignore packrat sources`.
+Também marque as opções `Automatically snapshot local changes` e `Git ignore packrat sources`.
+
+Isso irá criar um novo diretório chamado `packrat` e um arquivo chamado `.Rprofile`.
+
+## `packrat` -- Estrutura e funcionamento
+
+Estrutura do diretório `packrat`
+
+```{r, eval = FALSE}
+packrat
+|- lib/               # pacotes instalados usados no projeto
+|- lib-ext/           # pacotes externos instalados usados no projeto
+|- lib-R/             # pacotes básicos do R instalados
+|- src/               # código fonte para instalação dos pacotes do projeto
+|- packrat.opts       # opções de configuração do `packrat`
+|- packrat.lock       # versão do R e lista de pacotes usados no projeto
+|- init.R             # funções auxiliares do pacote `packrat` carregadas via .Rprofile
+```
+
+## `packrat` -- Estrutura e funcionamento
+
+Estrutura do arquivo `packrat.lock`
+
+```{r, eval = FALSE}
+PackratFormat: 1.4
+PackratVersion: 0.5.0
+RVersion: 3.4.4
+Repos: CRAN=https://cloud.r-project.org
+
+Package: packrat
+Source: CRAN
+Version: 0.5.0
+Hash: 498643e765d1442ba7b1160a1df3abf9
+```
+
+## `packrat` -- Estrutura e funcionamento
+
+Não esqueça de adicionar os novos arquivos ao monitoramento do `git`!
+
+Note que o conteúdo de `.gitignore` também foi modificado:
+
+```{r, eval = FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+packrat/lib*/
+packrat/src/
+```
+
+Use uma mensagem informativa da ação realizada.
+
+```{r, eval=FALSE}
+"Inicialização do packrat para gerenciamento de pacotes e dependências"
+```
+
+<!-- Using `packrat` with git for (better) version control -->
+
+<!-- > Its sole purpose is to keep track of what versions of packages (and R itself) you are running for any -->
+<!-- > given project. -->
+
+<!-- * Step-by-step how to use `packrat` -->
+
+<!-- https://www.joelnitta.com/post/packrat/ -->
