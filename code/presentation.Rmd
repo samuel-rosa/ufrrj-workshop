@@ -22,24 +22,63 @@ output:
 
 ## Definição do problema
 
+Imagine o seguinte cenário de trabalho científico:
+
+Você está trabalhando em um dos artigos de seu projeto de mestrado ou doutorado e pretende realizar toda a
+manipulação e análise dos dados no R. Você ainda não domina completamente o R, mas está disposto a investir em
+algum tempo de estudo pois já compreendeu que o cientista moderno precisa saber, pelo menos, uma linguagem de
+programação.
+
+Um dos colaboradores do trabalho possui grande experiência com o R e conhecimento mais avançado do que você
+sobre alguns métodos estatísticos que você pretende utilizar para analisar seus dados.
+
+Seu orientador não possui nenhum -- ou muito pouco -- conhecimento sobre o R e os métodos estatísticos que você
+pretende utilizar para analisar seus dados. As demandas do ensino, pesquisa, extensão e gestão impedem que seu
+orientador consiga investir em algum tempo de estudo.
+
+(_Continua..._)
+
+## Definição do problema
+
+(_Continuação..._)
+
+Finalizada a análise dos dados e redação do artigo, você o submete a uma renomada revista científica da sua 
+área. Depois de doze meses, quando você e seus colaboradores já estão trabalhando em outro artigo, você rebece
+o parecer do editor da revista solicitando revisão profunda do artigo, inclusive, com reanálise estatística dos
+dados, reformulação das tabelas e figuras, e inclusão de referências mais recentes.
+
+Seu artigo é publicado e logo alcança grande visibilidade, pois você inovou no uso dos métodos estatísticos e
+os resultados encontrados podem representar um avanço importante no conhecimento de sua área. Outros
+pesquisadores da sua área querem replicar seu estudo a fim de verificar se os resultados se aplicam a outros 
+ambientes e situações. Enquanto isso, alguns pesquisadores mais céticos e experientes querem reanalisar seus
+dados e revisar os métodos de análise estatística que você utilizou pois não estão plenamente convencidos 
+acerca dos resultados que você encontrou.
+
+## Objetivo da oficina
+
+```{r, echo=FALSE, fig.align='center'}
+y0 <- 0.2
+y <- c(rep(y0, 25), seq(y0, 0.1, -0.1), rep(0.01, 30), seq(0.1, y0 * 3, 0.1), rep(y0 * 3, 35))
+x <- 1:length(y)
+par(mgp = c(0, 1, 0), mar = rep(1, 4))
+plot(y ~ x, type = "l", xlab = "Tempo", ylab = "Produtividade", ylim = c(0, 1), axes = FALSE)
+text(42, 0.1, "Vale da Morte", col = "red")
+text(12, 0.25, "Antes")
+text(80, 0.65, "Depois")
+arrows(-1, -0.01, 100, -0.01, length = 0.1)
+arrows(-1, -0.01, -1, 1, length = 0.1)
+arrows(x[length(x)- 1], y[length(y)], x[length(x)], y[length(y)], length = 0.1)
+```
 
 # Preparação do ambiente de trabalho
 
-## Instalação de programas
-
-Você precisa instalar os seguintes programas em seu computador:
-
-* R: https://www.r-project.org/
-* RStudio: https://www.rstudio.com/
-* git: https://git-scm.com/
-* pandoc: https://github.com/jgm/pandoc/releases/
-* latex: https://www.latex-project.org/
+# Estrutura de diretórios e arquivos
 
 ## Estrutura de diretórios e arquivos
 
-Agora vamos criar a seguinte estrutura de diretórios e arquivos:
+Vamos criar a seguinte estrutura de diretórios e arquivos:
 
-```{bash, eval=FALSE}
+```{r, eval=FALSE}
 projeto
 |- code/            # código fonte
 |
@@ -57,9 +96,16 @@ projeto
 |- tmp/             # arquivos temporários irrelevantes
 ```
 
+# R/RStudio
+
+## R/RStudio -- Instalação
+
+* R: https://www.r-project.org/
+* RStudio: https://www.rstudio.com/
+
 ## Projeto do RStudio
 
-O próximo passo consiste em criar um projeto do RStudio para gerenciar os arquivos do nosso projeto.
+Vamos criar um projeto do RStudio para gerenciar os diretórios e arquivos do nosso projeto.
 
 Acesse
 
@@ -78,7 +124,7 @@ você encontrará um arquivo chamado `projeto.Rproj`, contendo as definições d
 
 # git | Controle de versão e gerenciamento de código fonte
 
-## git | Controle de versão e gerenciamento de código fonte
+## git -- Alguma familiaridade?
 
 ```{bash, eval = FALSE}
 projeto
@@ -101,9 +147,17 @@ projeto
 |  |- artigo-v17.odt
 ```
 
+## git -- Instalação
+
+* git: https://git-scm.com/
+
+```{r, echo = FALSE}
+knitr::include_url('https://git-scm.com/')
+```
+
 ## git -- Inicialização
 
-Existem duas maneiras de habilitar o `git` num projeto.
+Existem duas maneiras de habilitar o git num projeto.
 
 A primeira consiste em acessar o Terminal no RStudio, localizado ao lado do Console, e emitir o seguinte 
 comando:
@@ -116,15 +170,15 @@ Para a segunda, acesse
 
 `Ferramentas > Opções do Projeto... > Git/SVN`
 
-e escolha o `git` como sistema de controle de versão do projeto. Após a reinicialização do RStudio, uma nova 
+e escolha o git como sistema de controle de versão do projeto. Após a reinicialização do RStudio, uma nova 
 aba será criada no painel superior direito do RStudio. Logo falaremos sobre ele!
 
 Dentre os diretórios e arquivos do projeto você encontrará um novo arquivo chamado `.gitignore`. Logo falaremos
 sobre ele!
 
-## `git` -- Configuração
+## git -- Configuração
 
-Antes do primeiro uso do `git`, é preciso configurar duas variáveis globais: nome do usuário e endereço de 
+Antes do primeiro uso do git, é preciso configurar duas variáveis globais: nome do usuário e endereço de 
 e-mail.
 
 Acesse o Terminal do RStudio, localizado ao lado do Console, e emita os seguintes comando -- substituindo com 
@@ -138,7 +192,7 @@ git config --global user.email 'escreva-seu@email.aqui'
 Mais tarde veremos que isso permite identificar, quando trabalhamos em duas ou mais pessoas no mesmo projeto,
 quem fez cada alteração e quantas alterações cada um fez -- uma maneira de definir a ordem dos autores?
 
-## `git` -- Funcionamento
+## git -- Funcionamento
 
 A aba Git, localizada no painel superior direito do RStudio, indica os ___aquivos___ do projeto que podem ser 
 submetidos aos sistema de controle de versão. São dois arquivos:
@@ -154,7 +208,7 @@ submetidos aos sistema de controle de versão. São dois arquivos:
 .Ruserdata
 ```
 
-Habilite as caixas sob o item `Staged` para adicionar os arquivos ao monitoramento do `git`.
+Habilite as caixas sob o item `Staged` para adicionar os arquivos ao monitoramento do git.
 
 Acesse o item `Commit` e insira uma mensagem descrevendo a edição feita no projeto, por exemplo: 
 
@@ -226,7 +280,7 @@ Hash: 498643e765d1442ba7b1160a1df3abf9
 
 ## `packrat` -- Estrutura e funcionamento
 
-Não esqueça de adicionar os novos arquivos ao monitoramento do `git`!
+Não esqueça de adicionar os novos arquivos ao monitoramento do git!
 
 Note que o conteúdo de `.gitignore` também foi modificado:
 
@@ -253,3 +307,6 @@ Use uma mensagem informativa da ação realizada.
 <!-- * Step-by-step how to use `packrat` -->
 
 <!-- https://www.joelnitta.com/post/packrat/ -->
+
+* pandoc: https://github.com/jgm/pandoc/releases/
+* latex: https://www.latex-project.org/

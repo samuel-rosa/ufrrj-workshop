@@ -15,10 +15,10 @@ Os tópicos a serem abordados na oficina são os seguintes:
 
 1. Aquecimento ou preliminares
     + Definição do problema
+    + Objetivo da oficina
 2. Preparação do ambiente de trabalho
-    + Instalação de programas
     + Estrutura de diretórios e arquivos
-    + Projeto do [RStudio][rstudio]
+    + R/[RStudio][rstudio]
     + [git][git] -- Controle de versão e gerenciamento de código fonte
     + [`packrat`][packrat] -- Gerenciamento de pacotes e dependências
 3. Ambiente de análise de dados -- [R][r]
