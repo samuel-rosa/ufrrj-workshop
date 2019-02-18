@@ -510,7 +510,7 @@ O atalho para adicionar um pedaço de código num documento R Markdown é `Ctrl 
 
 Crie um arquivo R Markdown que servirá de caderno de anotações do projeto.
 
-Acesso o _Terminar_ e emita o seguinte comando:
+Acesse o _Terminal_ e emita o seguinte comando:
 
 ```{r include=FALSE}
 options(prompt = '$ ', continue = '$ ')
@@ -525,7 +525,7 @@ cd ..                           # retorna à raiz do diretório de trabalho
 ## R Markdown -- Metadados (YAML)
 
 Uma série de metadados pode ser registrada no cabeçalho de um documento R Markdown. Para isso usamos uma
-sintaxe chamada `YAML`.
+sintaxe chamada YAML.
 
 O cabeçalho de um documento R Markdown é delimitado por um par de três traços (`---`).
 
