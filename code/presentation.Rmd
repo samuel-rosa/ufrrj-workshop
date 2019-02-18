@@ -18,7 +18,11 @@ output:
   })
 </script>
 
-# Aquecimento ou preliminares
+```{r, echo=FALSE, include=FALSE}
+library(magrittr)
+```
+
+# Parte I | Preliminares
 
 ## Definição do problema
 
@@ -70,16 +74,84 @@ arrows(-1, -0.01, -1, 1, length = 0.1)
 arrows(x[length(x)- 1], y[length(y)], x[length(x)], y[length(y)], length = 0.1)
 ```
 
-# Preparação do ambiente de trabalho
+# Parte II | Preparação do ambiente de trabalho
 
-# Estrutura de diretórios e arquivos
+# R | Ambiente de software para computação estatística e gráficos
 
-## Estrutura de diretórios e arquivos
+## R -- Instalação (www.r-project.org/)
+
+<iframe src="https://www.r-project.org/"></iframe>
+
+## R -- Funcionamento básico: operações
+
+```{r, eval = FALSE, prompt=TRUE}
+2 + 3         # Soma
+5 * 5         # Multiplicação
+25/5          # Divisão 
+5 - 3         # Subtração
+2^2           # Potenciação (ou exponenciação)
+log(x = 4)    # Função logarítmica
+sqrt(x = 25)  # Raiz quadrada
+```
+
+Para consultar a documentação de uma função, posicione o cursor do _mouse_ sobre a mesma e pressione `F1`. A
+documentação aparecerá na aba _Help_ do painel inferior direito do RStudio. Você também pode usar `Ctrl + 3`
+para focar na aba _Help_.
+
+## R -- Funcionamento básico: funções
+
+```{r, eval=FALSE, prompt=TRUE}
+soma <- 
+  function (x, y) {     
+    res <- x + y
+    return (res)
+  }
+a <- soma(x = 2, y = 2)
+```
+
+A função interna do R para soma:
+
+```{r, eval=FALSE, prompt=TRUE}
+a <- sum(2, 2)
+```
+
+Para consultar a estrutura de uma função, posicione o cursor do _mouse_ sobre a mesma e pressione `F2`.
+
+## R -- Funcionamento básico: gráficos
+
+```{r, fig.align='center', fig.width=6, fig.height=4, prompt=TRUE}
+plot(x = 25, y = 25, col = "red", main = "Um ponto vermelho", xlab = "x", ylab = "y")
+grid()
+```
+
+# RStudio | Ambiente de desenvolvimento integrado
+
+## RStudio -- Instalação (www.rstudio.com)
+
+<iframe src="https://www.rstudio.com/"></iframe>
+
+## RStudio -- Projeto
+
+Vamos criar um projeto do RStudio para gerenciar seu projeto de trabalho e seus diretórios e arquivos.
+
+Acesse `File > New project... > New Directory`. Na janela `Project Type`, selecione `New Project`.
+
+Navegue até o diretório onde você pretende armazenar os diretórios e arquivos do seu projeto de trabalho.
+
+Defina uma nome para o projeto -- de preferência sem letras maiúsculas, sem espaços e sem acentos, por exemplo,
+`project` -- e pressione `Create Project`.
+
+Pronto!
+
+No painel inferior direito do RStudio, _Files_, você tem acesso ao diretório de trabalho do seu projeto.
+Ali você encontrará um arquivo chamado `project.Rproj`, contendo algumas definições do projeto do RStudio.
+
+## RStudio -- Estrutura de diretórios e arquivos
 
 Vamos criar a seguinte estrutura de diretórios e arquivos:
 
 ```{r, eval=FALSE}
-projeto
+project
 |- code/            # código fonte
 |
 |- data/            # dados usados no projeto
@@ -94,40 +166,37 @@ projeto
 |  |- tab/          # tabelas (CSV, TSV)
 |
 |- tmp/             # arquivos temporários irrelevantes
+|
+|- README.md        # descrição do projeto
 ```
 
-# R/RStudio
+## RStudio -- Estrutura de diretórios e arquivos
 
-## R/RStudio -- Instalação
+Acesse o _Terminal_ no RStudio, localizado ao lado do _Console_ do R, e emita os seguintes comandos:
 
-* R: https://www.r-project.org/
-* RStudio: https://www.rstudio.com/
+```{r include=FALSE}
+options(prompt = '$ ', continue = '$ ')
+```
 
-## Projeto do RStudio
+```{bash, eval=FALSE, prompt=TRUE}
+mkdir code data docs res tmp    # cria diretórios principais
+cd data                         # acessa o diretório 'data'
+mkdir r raster vector           # cria sub-diretórios de dados
+cd ..                           # retorna à raiz do diretório de trabalho
+cd res                          # acessa o diretório 'res'
+mkdir fig tab                   # cria sub-diretórios de resultados
+cd ..                           # retorna à raiz do diretório de trabalho
+echo > README.md                # cria arquivo em branco
+```
 
-Vamos criar um projeto do RStudio para gerenciar os diretórios e arquivos do nosso projeto.
+Os diretórios e arquivos criados aparecerão no painel inferior direito do RStudio, _Files_.
 
-Acesse
+# Git | Controle de versão e gerenciamento de código fonte
 
-`Arquivo > Novo projeto > Diretório existente`
+## Git -- Alguma familiaridade?
 
-e navegue até o diretório recém criado -- `projeto`.
-
-Pressione
-
-`Criar projeto`
-
-Pronto!
-
-Toda a estrutura de diretórios e arquivos recém criada aparecerá no painel direito inferior do RStudio. Ali 
-você encontrará um arquivo chamado `projeto.Rproj`, contendo as definições do projeto.
-
-# git | Controle de versão e gerenciamento de código fonte
-
-## git -- Alguma familiaridade?
-
-```{bash, eval = FALSE}
-projeto
+```{r, eval = FALSE}
+project
 |- docs/
 |  |- artigo.odt
 |  |- artigo-v2.odt
@@ -147,44 +216,34 @@ projeto
 |  |- artigo-v17.odt
 ```
 
-## git -- Instalação
+## Git -- Instalação (www.git-scm.com)
 
-* git: https://git-scm.com/
+<iframe src="https://www.git-scm.com/"></iframe>
 
-```{r, echo = FALSE}
-knitr::include_url('https://git-scm.com/')
+## Git -- Inicialização
+
+Para habilitar o Git num projeto existente, acesse o _Terminal_ no RStudio, localizado ao lado do _Console_ do
+R, e emita o seguinte comando:
+
+```{bash eval=FALSE, prompt=TRUE}
+git init              # inicialização do Git
 ```
 
-## git -- Inicialização
-
-Existem duas maneiras de habilitar o git num projeto.
-
-A primeira consiste em acessar o Terminal no RStudio, localizado ao lado do Console, e emitir o seguinte 
-comando:
-
-```{bash, eval=FALSE}
-git init
-```
-
-Para a segunda, acesse
-
-`Ferramentas > Opções do Projeto... > Git/SVN`
-
-e escolha o git como sistema de controle de versão do projeto. Após a reinicialização do RStudio, uma nova 
-aba será criada no painel superior direito do RStudio. Logo falaremos sobre ele!
+Após a reinicialização do RStudio, uma nova aba, _Git_, aparecerá no painel superior direito do RStudio. Logo
+falaremos mais sobre ele!
 
 Dentre os diretórios e arquivos do projeto você encontrará um novo arquivo chamado `.gitignore`. Logo falaremos
 sobre ele!
 
-## git -- Configuração
+## Git -- Configuração
 
-Antes do primeiro uso do git, é preciso configurar duas variáveis globais: nome do usuário e endereço de 
+Antes do primeiro uso do Git, é preciso configurar duas variáveis globais: nome do usuário e endereço de 
 e-mail.
 
-Acesse o Terminal do RStudio, localizado ao lado do Console, e emita os seguintes comando -- substituindo com 
-seus dados os campos pertinentes:
+Acesse o _Terminal_ do RStudio, localizado ao lado do _Console_ do R, e emita os seguintes comando --
+substituindo com seus dados os campos pertinentes:
 
-```{bash, eval=FALSE}
+```{bash eval=FALSE, prompt=TRUE}
 git config --global user.name 'Escreva Seu Nome aqui'
 git config --global user.email 'escreva-seu@email.aqui'
 ```
@@ -192,33 +251,34 @@ git config --global user.email 'escreva-seu@email.aqui'
 Mais tarde veremos que isso permite identificar, quando trabalhamos em duas ou mais pessoas no mesmo projeto,
 quem fez cada alteração e quantas alterações cada um fez -- uma maneira de definir a ordem dos autores?
 
-## git -- Funcionamento
+## Git -- Funcionamento
 
-A aba Git, localizada no painel superior direito do RStudio, indica os ___aquivos___ do projeto que podem ser 
-submetidos aos sistema de controle de versão. São dois arquivos:
+A aba _Git_, localizada no painel superior direito do RStudio, indica os aquivos do projeto que podem ser 
+submetidos aos sistema de controle de versão. São três arquivos:
 
-`.gitignore`: definições do projeto.
+`README.md`: informações sobre o seu projeto
 
-`projeto.Rproj`: lista dos arquivos que devem ser ignorados pelo sistema de controle de versão.
+`project.Rproj`: definições do projeto do RStudio
 
-```{bash, eval=FALSE}
+`.gitignore`: lista dos arquivos que devem ser ignorados pelo sistema de controle de versão
+
+```{r, eval=FALSE}
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 ```
 
-Habilite as caixas sob o item `Staged` para adicionar os arquivos ao monitoramento do git.
-
-Acesse o item `Commit` e insira uma mensagem descrevendo a edição feita no projeto, por exemplo: 
+Habilite as caixas sob o item _Staged_ para adicionar os arquivos ao monitoramento do Git. Depois acesse o item
+_Commit_ e insira uma mensagem descrevendo a edição feita no projeto, por exemplo: 
 
 ```{r, eval=FALSE}
-"Inicialização de projeto do RStudio usando git para controle de versão e gerenciamento de código fonte"
+Commit: "Inicia projeto do RStudio usando Git para controle de versão e gerenciamento de código fonte"
 ```
 
-# packrat | Gerenciamento de pacotes e depedências
+# Packrat | Gerenciamento de pacotes e depedências
 
-## `packrat` | Gerenciamento de pacotes e depedências
+## Packrat -- Ambiente de programação
 
 > "Any programming environment should be optimized for its task, and not all tasks are alike." 
 > ([Cole Arendt, 2018][arendt])
@@ -226,45 +286,40 @@ Acesse o item `Commit` e insira uma mensagem descrevendo a edição feita no pro
 [arendt]: https://rviews.rstudio.com/2018/01/18/package-management-for-reproducible-r-code/
 
 * Dois problemas principais:
-    - Como criar um ambiente de programação reprodutível?
-    - Como isolar as dependências dos pacotes de um projeto?
+    - Como criar um ambiente de programação reprodutível:
+        + Para outros pesquisadores?
+        + Para mim mesmo em outro local e no futuro?
+    - Como isolar as dependências dos pacotes do R de um projeto?
 * Solução:
-    - Criando uma biblioteca de pacotes e suas dependências por projeto!
+    - Criando uma biblioteca de pacotes do R e suas dependências por projeto!
 
-## `packrat` -- Habilitação
+## Packrat -- Habilitação
 
-Para habilitar o gerenciamento de pacotes via `packrat` no projeto, acesse
+Para habilitar o gerenciamento de pacotes do R via Packrat num projeto existente, acesse `Packages > Packrat` 
+e habilite a opção `Use packrat with this project`.
 
-`Ferramentas > Opções do Projeto... > Packrat`
-
-ou
-
-`Pacotes > Packrat`
-
-e marque a opção `Usar packrat com este projeto`.
-
-Também marque as opções `Automatically snapshot local changes` e `Git ignore packrat sources`.
+Na janela que abrir, marque as opções `Automatically snapshot local changes` e `Git ignore packrat sources`.
 
 Isso irá criar um novo diretório chamado `packrat` e um arquivo chamado `.Rprofile`.
 
-## `packrat` -- Estrutura e funcionamento
+## packrat -- Estrutura e funcionamento
 
-Estrutura do diretório `packrat`
+Estrutura do diretório `packrat`:
 
 ```{r, eval = FALSE}
 packrat
-|- lib/               # pacotes instalados usados no projeto
-|- lib-ext/           # pacotes externos instalados usados no projeto
-|- lib-R/             # pacotes básicos do R instalados
-|- src/               # código fonte para instalação dos pacotes do projeto
-|- packrat.opts       # opções de configuração do `packrat`
-|- packrat.lock       # versão do R e lista de pacotes usados no projeto
-|- init.R             # funções auxiliares do pacote `packrat` carregadas via .Rprofile
+|- lib/               # pacotes do R instalados usados no projeto -- Packrat Library
+|- lib-ext/           # pacotes externos do R instalados usados no projeto
+|- lib-R/             # pacotes básicos do R instalados -- Systema Library
+|- src/               # código fonte para instalação dos pacotes do R do projeto
+|- packrat.opts       # opções de configuração do packrat
+|- packrat.lock       # versão do R e lista de pacotes do R usados no projeto
+|- init.R             # funções auxiliares do packrat carregadas via .Rprofile
 ```
 
-## `packrat` -- Estrutura e funcionamento
+## Packrat -- Estrutura e funcionamento
 
-Estrutura do arquivo `packrat.lock`
+Conteúdo do arquivo `packrat.lock`:
 
 ```{r, eval = FALSE}
 PackratFormat: 1.4
@@ -278,9 +333,9 @@ Version: 0.5.0
 Hash: 498643e765d1442ba7b1160a1df3abf9
 ```
 
-## `packrat` -- Estrutura e funcionamento
+## Packrat -- Estrutura e funcionamento
 
-Não esqueça de adicionar os novos arquivos ao monitoramento do git!
+Uma vez habilitado o Packrat, vamos adicionar os novos arquivos ao monitoramento do Git!
 
 Note que o conteúdo de `.gitignore` também foi modificado:
 
@@ -296,7 +351,480 @@ packrat/src/
 Use uma mensagem informativa da ação realizada.
 
 ```{r, eval=FALSE}
-"Inicialização do packrat para gerenciamento de pacotes e dependências"
+Commit: "Inicia Packrat para gerenciamento de pacotes e dependências"
+```
+
+## Packrat -- Estrutura e funcionamento
+
+Pressione `Ctrl + 3` para focar na aba _packages_.
+
+Você verá duas listas, uma com os pacotes instalados na biblioteca do sistema -- _System Library_ --, outra 
+com os pacotes instalados na biblioteca do Packrat -- _Packrat Library_.
+
+Vamos instalar mais alguns pacotes do R que serão utilizados no desenvolvimento do projeto.
+
+Pressione _Install_ e insira o nome de cada um dos pacotes -- separados por um espaço -- que você deseja
+instalar. Por exemplo:
+
+```{r, eval=FALSE}
+dplyr magrittr rmarkdown
+```
+
+Os três pacotes, mais os pacotes dos quais eles dependem, serão instalados na biblioteca do Packrat, 
+_Packrat Library_. O nome, fonte e versão desses pacotes serão registrados no arquivo `packrat.lock`.
+
+```{r, eval=FALSE}
+Commit: "Instala os pacotes dplyr, magrittr e rmarkdown e suas dependências"
+```
+
+## Packrat -- Estrutura e funcionamento
+
+```{r include=FALSE}
+options(prompt = '> ', continue = '+ ')
+```
+
+```{r, prompt=TRUE}
+tools::package_dependencies("dplyr")[[1]]
+tools::package_dependencies("magrittr")[[1]]
+tools::package_dependencies("rmarkdown")[[1]]
+```
+
+# Markdown | Uma linguagem simples de marcação
+
+## Markdown -- WYSIWYG _versus_ WYMIWYG
+
+Existem duas abordagens fundamentais de produção de documentos científicos:
+
+WYSIWYG: _What You See Is What You Get_
+
+WYMIWYG: _What You Mean Is What You Get_
+
+A primeira delas tenta mostrar, enquanto digitamos, uma versão aproximada da versão final do trabalho num 
+num formato específico de arquivo num editor específico de texto. Assim, enquanto trabalhamos, nos preocupamos
+com ambos conteúdo e formatação, sempre atrelados a um formato de arquivo e um editor de texto.
+
+A segunda separa o conteúdo do documento da sua formatação final, independente do formato do arquivo final e
+do editor de texto. Isso permite dar maior ênfase ao conteúdo, deixando a formatação para ser realizada de 
+maneira automática pelo computador. Para isso, basta inserir no texto comandos -- marcações -- específicos que
+expressão a formatação que queremos.
+
+## Markdown -- Sintaxe
+
+Ênfase:
+
+```{bash, eval=FALSE}
+_itálico_  __negrito__
+```
+
+Cabeçalhos:
+
+```{bash, eval=FALSE}
+# Cabeçalho 1
+## Cabeçalho 2
+### Cabeçalho 3
+```
+
+Listas:
+
+```{bash, eval = FALSE}
+* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b
+```
+
+(_Continua..._)
+
+## Markdown -- Sintaxe
+
+(_Continuação..._)
+
+Links:
+
+```{bash, eval=FALSE}
+[frase com link](http://www.exemplo.com.br)
+```
+
+Imagens:
+
+```{bash, eval=FALSE}
+![uma imagem](res/fig/imagem.png)
+```
+
+Diversos:
+
+```{bash, eval=FALSE}
+sobrescrito^2^
+
+subscrito~2~
+```
+
+## Markdown -- Exercício
+
+Nós vamos realizar alguns exercícios utilizando os dados de um estudo realizado por Braga e colaboradores sobre
+as alteração do pH do solo por influência da diluição, tipo de solvente e tempo de contato. O objetivo 
+principal será replicar as análises estatísticas do artigo, que está disponível em https://goo.gl/siV9m4. Os
+dados estão disponíveis no Repositório Brasileiro Livre para Dados Abertos do Solo (http://www.ufsm.br/febr/),
+conjunto de dados `ctb0041`.
+
+__Exercício__: Abra o arquivo `README.md` localizado no diretório de trabalho do seu projeto e insira uma 
+descrição detalhada do projeto usando sintaxe do Markdown. Crie um título para o projeto. Descreva a equipe e
+local de realização do projeto. Descreva o escopo e o objetivo do projeto. Descreva a estrutura de diretórios 
+e arquivos utilizada. Inclua uma licença de uso Creative Commons (https://br.creativecommons.org/).
+
+Dica: você encontrará ajuda sobre o Markdown em `Help > Markdown Quick Reference`.
+
+```{r, eval=FALSE}
+Commit: "Primeira descrição do projeto"
+```
+
+# Parte III | Ambiente de software para computação estatística, gráficos e redação científica
+
+# R Markdown | Linguagem de marcação avançada e caderno de anotações
+
+## R Markdown -- Linguagem de marcação avançada
+
+Propósito: incorporar pedaços de código (de R ou outras linguagens) em documentos Markdown.
+
+<pre>
+# Introdução
+
+Com __R Markdown__ podemos misturar texto e código fonte. Por exemplo, podemos fazer uma operação
+matemática qualquer como uma soma.
+
+```{r}
+x <- 2
+y <- 2
+res <- sum(x, y)
+```
+
+## Resultados
+
+O resultado da operação realizada aparecerá junto do texto. Isso facilita a realização das 
+análises, a verificação dos resultados e a documentação do código fonte.
+</pre>
+
+O atalho para adicionar um pedaço de código num documento R Markdown é `Ctrl + Alt + I`.
+
+## R Markdown -- Novo arquivo
+
+Crie um arquivo R Markdown que servirá de caderno de anotações do projeto.
+
+Acesso o _Terminar_ e emita o seguinte comando:
+
+```{r include=FALSE}
+options(prompt = '$ ', continue = '$ ')
+```
+
+```{bash, eval=FALSE, prompt=TRUE}
+cd code                         # acessa o diretório 'code'
+echo > main.Rmd                 # cria arquivo em branco no formato Rmd
+cd ..                           # retorna à raiz do diretório de trabalho
+```
+
+## R Markdown -- Metadados (YAML)
+
+Uma série de metadados pode ser registrada no cabeçalho de um documento R Markdown. Para isso usamos uma
+sintaxe chamada `YAML`.
+
+O cabeçalho de um documento R Markdown é delimitado por um par de três traços (`---`).
+
+Os metadados podem incluir desde informações básicas sobre o conteúdo do documento, até opções avançadas de
+configuração -- veremos mais detalhes adiante.
+
+```{bash, eval=FALSE}
+---
+title: "Título do projeto ou do documento"
+author: "Autor do documento"
+date: "Data do documento"
+---
+```
+
+__Exercício__: Adicione os metadados pertinentes ao arquivo recém criado `code/main.Rmd`. Não esqueça do Git!
+
+## R Markdown -- Caderno de anotações
+
+A partir de agora todas as atividades de manipulação e análise dos dados serão realizadas no documento 
+`code/main.Rmd`.
+
+Os pedaços de código de R devem ser delimitados por uma par de três aspas (```` ``` ````).
+
+O atalho para adicionar um pedaço de código de R é `Ctrl + Alt + I`.
+
+Todo texto, incluindo a sintaxe Markdown, deve ficar fora dos pedaços de código.
+
+Para adicionar texto (comentário) no interior dos pedaços de código, use a cerquilha (`#`) no início do texto.
+
+# Pipes | Operadores que tornam seu código mais legível
+
+```{r include=FALSE}
+options(prompt = '> ', continue = '+ ')
+```
+
+## Operações sequenciais com objetos temporários
+
+Suponha que você queira fazer uma sequência de operações. Uma forma comum é definir, para cada operação, um 
+objeto temporário, até que o produto final da sequência de operações seja obtido.
+
+```{r, eval=FALSE, prompt=TRUE}
+# Sequência de operações usando objetos temporários
+x <- exp(25)
+y <- sqrt(x)
+z <- log(y)
+z
+rm(x, y)
+gc()
+```
+
+Fácil de ler, mas muito verbosa. E você ainda pode esquecer de remover os objetos temporários do ambiente de 
+trabalho e assim permitir que eles indesejadamente afetem outras operações.
+
+## Operações sequenciais com funções aninhadas
+
+Uma alternativa é usar funções aninhadas, o que elimina a necessidade de criação de objetos temporários e reduz
+o número de linhas de código.
+
+```{r, eval=FALSE, prompt=TRUE}
+# Sequência de operações usando funções aninhadas
+z <- log(sqrt(exp(25)))
+z
+```
+
+Contudo, um novo problema foi criado, o da legibilidade da linha de comando. Como nossa tradição de leitura
+segue de cima para baixo e da esquerda para a direita, precisamos ler o código da direita para a esquerda ou
+então pensar de maneira reversa.
+
+## Pipes -- o pacote magrittr
+
+Os _pipes_ (tubos ou canos), `%>%` e `%T>%`, providos pelo pacote magrittr, resolvem todos esses problemas de
+uma só vez.
+
+```{r, eval=FALSE, prompt=TRUE}
+# Sequência de operações usando os operadores %>% e %T>%
+z <- exp(25) %>% sqrt() %>% log() %T>% print()
+```
+
+Um _pipe_ estabelece uma comunicação direta entre duas funções. O resultado da função do lado esquedo do _pipe_
+é passado diretamente para o primeiro argumento da função localizada no lado direito do _pipe_.
+
+`x %>% f(y)` é equivalente a `f(x, y)`
+
+Se quisermos que o resultado da função da esquerda seja passado não para o primeiro, mas para outro
+argumento da função da direita, usamos um ponto (`.`) como marcador de posição.
+
+`x %>% f(y, .)` é equivalente a  `f(y, x)`
+
+O atalho do operador `%>%` é `Ctrl + Shift + M`.
+
+## Pipes -- Exercício
+
+__Exercício__: Acesse a documentação da função `lm()`. Copie as quatro primeiras linhas de código do exemplo.
+Em seguida, usando _pipes_, ajuste o modelo de regressão linear, gere um gráfico dos resíduos e imprima o
+resultado da análise de variância do modelo.
+
+```{r, eval=FALSE, prompt=TRUE}
+ctl <- c(4.17, 5.58, 5.18, 6.11, 4.50, 4.61, 5.17, 4.53, 5.33, 5.14)
+trt <- c(4.81, 4.17, 4.41, 3.59, 5.87, 3.83, 6.03, 4.89, 4.32, 4.69)
+group <- gl(2, 10, 20, labels = c("Ctl", "Trt"))
+weight <- c(ctl, trt)
+lm.D9 <- lm(weight ~ group)   # substitua usando pipes
+plot(lm.D9, which = 1)        # substitua usando pipes
+anova(lm.D9)                  # substitua usando pipes
+```
+
+## Pipes -- Exercício
+
+```{r, eval=FALSE, prompt=TRUE}
+ctl <- c(4.17, 5.58, 5.18, 6.11, 4.50, 4.61, 5.17, 4.53, 5.33, 5.14)
+trt <- c(4.81, 4.17, 4.41, 3.59, 5.87, 3.83, 6.03, 4.89, 4.32, 4.69)
+group <- gl(2, 10, 20, labels = c("Ctl", "Trt"))
+weight <- c(ctl, trt)
+lm.D9 <-
+  lm(weight ~ group) %T>% 
+  plot(which = 1) %>% 
+  anova()
+```
+
+## Pipes -- Exercício
+
+__Exercício__: Qual é a utilidade dos _pipes_ `%<>%` e `%$%`?
+
+```{r, prompt=TRUE}
+head(iris)
+```
+
+```{r, eval=FALSE, prompt=TRUE}
+iris$Sepal.Length %<>% sqrt
+iris %$% cor(Sepal.Length, Sepal.Width)
+```
+
+# dplyr | Gramática de manipulação de dados
+
+## dplyr -- Gramática de manipulação de dados
+
+O objetivo do pacote dplyr é prover um conjunto de funções, nomeadas como verbos, para cumprir as tarefas
+mais comuns de manipulação de dados. Isso torna o código mais legível por humanos.
+
+O pacote dplyr foi projetado de maneira que se possa abstrair a maneira como os dados são armazenados. Isso
+facilita o aprendizado e a manipulação dos dados.
+
+Alguns exemplos:
+
+```{r, eval=FALSE, prompt=TRUE}
+mutate()         # adiciona novas variáveis em função de variáveis existentes
+select()         # seleciona variáveis em função dos seus nomes
+filter()         # seleciona indivíduos em função dos seus valores
+summarise()      # computa medidas descritivas de variáveis
+arrange()        # muda a ordem das linhas
+group_by()       # agrupa indivíduos em função de variáveis
+```
+
+## dplyr -- Exemplos
+
+```{r, echo=FALSE, include=FALSE}
+library(dplyr)
+```
+
+```{r, prompt=TRUE}
+iris %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, eval = FALSE, prompt=TRUE}
+iris %>% 
+  filter(Species == "setosa") %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, prompt=TRUE}
+iris %>% 
+  filter(Species == "setosa") %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, eval=FALSE, prompt=TRUE}
+iris %>% 
+  select(Species, ends_with("Width")) %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, prompt=TRUE}
+iris %>% 
+  select(Species, ends_with("Width")) %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, eval=FALSE, prompt=TRUE}
+iris %>% 
+  mutate(
+    Sepal.Area = Sepal.Length * Sepal.Width,
+    Petal.Area = Petal.Length * Petal.Width) %>%
+  select(ends_with("Area")) %>% 
+  plot(col = iris$Species)
+grid()
+```
+
+## dplyr -- Exemplos
+
+```{r, prompt=TRUE, fig.align='center', echo=FALSE}
+iris %>% 
+  mutate(
+    Sepal.Area = Sepal.Length * Sepal.Width,
+    Petal.Area = Petal.Length * Petal.Width) %>%
+  select(ends_with("Area")) %>% 
+  plot(col = iris$Species)
+grid()
+```
+
+## dplyr -- Exemplos
+
+```{r, eval=FALSE, prompt=TRUE}
+iris %>% 
+  arrange(desc(Sepal.Length)) %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, prompt=TRUE}
+iris %>% 
+  arrange(desc(Sepal.Length)) %>% 
+  as_tibble()
+```
+
+## dplyr -- Exemplos
+
+```{r, eval=FALSE, prompt=TRUE}
+iris %>%
+  mutate(
+    Sepal.Area = Sepal.Length * Sepal.Width,
+    Petal.Area = Petal.Length * Petal.Width,
+    diff.Area = Sepal.Area - Petal.Area) %>%
+  group_by(Species) %>%
+  summarise(
+    n = n(),
+    mean = mean(diff.Area, na.rm = TRUE),
+    median = median(diff.Area, na.rm = TRUE),
+    sd = sd(diff.Area, na.rm = TRUE)
+  )
+```
+
+## dplyr -- Exemplos
+
+```{r, prompt=TRUE}
+iris %>%
+  mutate(
+    Sepal.Area = Sepal.Length * Sepal.Width,
+    Petal.Area = Petal.Length * Petal.Width,
+    diff.Area = Sepal.Area - Petal.Area) %>% 
+  group_by(Species) %>%
+  summarise(
+    n = n(),
+    mean = mean(diff.Area, na.rm = TRUE),
+    median = median(diff.Area, na.rm = TRUE),
+    sd = sd(diff.Area, na.rm = TRUE)
+  )
+```
+
+## dplyr -- Exemplos
+
+```{r, eval=FALSE, prompt=TRUE}
+iris %>%
+  mutate(
+    Sepal.Area = Sepal.Length * Sepal.Width,
+    Petal.Area = Petal.Length * Petal.Width
+  ) %>% 
+  rpart::rpart(
+    Species ~ Sepal.Area + Sepal.Length + Sepal.Width + Petal.Area + Petal.Length + Petal.Width, 
+    data = .) %T>% 
+  plot() %>%
+  text(use.n = TRUE)
+```
+
+## dplyr -- Exemplos
+
+```{r, prompt=TRUE, echo=FALSE, fig.width=8, fig.height=5, fig.align='center'}
+par(xpd = NA)
+iris %>%
+  mutate(
+    Sepal.Area = Sepal.Length * Sepal.Width,
+    Petal.Area = Petal.Length * Petal.Width
+  ) %>% 
+  rpart::rpart(
+    Species ~ Sepal.Area + Sepal.Length + Sepal.Width + Petal.Area + Petal.Length + Petal.Width, 
+    data = .) %T>% 
+  plot() %>%
+  text(use.n = TRUE)
 ```
 
 <!-- Using `packrat` with git for (better) version control -->
@@ -308,5 +836,6 @@ Use uma mensagem informativa da ação realizada.
 
 <!-- https://www.joelnitta.com/post/packrat/ -->
 
-* pandoc: https://github.com/jgm/pandoc/releases/
-* latex: https://www.latex-project.org/
+<!-- * pandoc: https://github.com/jgm/pandoc/releases/ -->
+<!-- * latex: https://www.latex-project.org/ -->
+<!-- * R: https://www.r-project.org/ -->
