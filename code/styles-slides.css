@@ -28,3 +28,6 @@ footer:after {
   line-height: 1.9;
   display: block;
 }
+pre {
+  background-color: #e6e6e6; 
+}
