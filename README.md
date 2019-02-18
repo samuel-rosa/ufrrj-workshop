@@ -13,17 +13,19 @@ Os objetivos geral da oficina é conhecer um conjunto de ferramentas abertas e l
 
 Os tópicos a serem abordados na oficina são os seguintes:
 
-1. Aquecimento ou preliminares
+1. Parte I -- Preliminares
     + Definição do problema
     + Objetivo da oficina
-2. Preparação do ambiente de trabalho
-    + Estrutura de diretórios e arquivos
-    + R/[RStudio][rstudio]
-    + [git][git] -- Controle de versão e gerenciamento de código fonte
-    + [`packrat`][packrat] -- Gerenciamento de pacotes e dependências
-3. Ambiente de análise de dados -- [R][r]
-    + Linguagem de marcação e caderno de anotações: [`rmarkdown`][rmarkdown]
-    + O universo de Hadley Wickham: [`tidyverse`][tidyverse]
+2. Parte II -- Preparação do ambiente de trabalho
+    + [R][r] -- Ambiente de software para computação estatística e gráficos
+    + [RStudio][rstudio] -- Ambiente de desenvolvimento integrado
+    + [Git][git] -- Controle de versão e gerenciamento de código fonte
+    + [Packrat][packrat] -- Gerenciamento de pacotes e dependências
+    + [Markdown][markdown] -- Uma linguagem simples de marcação
+3. Parte III -- Ambiente de software para computação estatística, gráficos e redação científica
+    + [R Markdown][rmarkdown] -- Linguagem de marcação avançada e caderno de anotações
+    + [Pipes][pipes] -- Operadores que tornam seu código mais legível
+    + [dplyr][dplyr] -- Gramática de manipulação de dados
 4. Ambiente de análise de dados e redação científica colaborativos
     + Compartilhamento de código fonte: [GitHub][github]
     + Produção de documentos científicos:
@@ -45,12 +47,14 @@ Dia      | Horário      | Conteúdo
 
 NOTA: Alterações no cronograma poderão ocorrem em decorrência do horário do término da defesa da tese de doutorado de Elias Mendes Costa, que ocorrerá na manhã do dia 19-01-19, terça-feira.
 
+[pipes]: https://magrittr.tidyverse.org/
 [git]: https://git-scm.com/
 [github]: https://github.com/
 [r]: https://www.r-project.org/
 [rstudio]: https://www.rstudio.com/
 [packrat]: https://rstudio.github.io/packrat/
-[tidyverse]: https://www.tidyverse.org/
+[dplyr]: https://dplyr.tidyverse.org/
+[markdown]: https://daringfireball.net/projects/markdown/
 [rmarkdown]: https://rmarkdown.rstudio.com/
 [knitr]: https://yihui.name/knitr/
 [pandoc]: https://pandoc.org/
