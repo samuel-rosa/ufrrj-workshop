@@ -302,7 +302,7 @@ Na janela que abrir, marque as opções `Automatically snapshot local changes` e
 
 Isso irá criar um novo diretório chamado `packrat` e um arquivo chamado `.Rprofile`.
 
-## packrat -- Estrutura e funcionamento
+## Packrat -- Estrutura e funcionamento
 
 Estrutura do diretório `packrat`:
 
@@ -463,9 +463,7 @@ subscrito~2~
 
 Nós vamos realizar alguns exercícios utilizando os dados de um estudo realizado por Braga e colaboradores sobre
 as alteração do pH do solo por influência da diluição, tipo de solvente e tempo de contato. O objetivo 
-principal será replicar as análises estatísticas do artigo, que está disponível em https://goo.gl/siV9m4. Os
-dados estão disponíveis no Repositório Brasileiro Livre para Dados Abertos do Solo (http://www.ufsm.br/febr/),
-conjunto de dados `ctb0041`.
+principal será replicar as análises estatísticas do artigo, que está disponível em https://goo.gl/siV9m4.
 
 __Exercício__: Abra o arquivo `README.md` localizado no diretório de trabalho do seu projeto e insira uma 
 descrição detalhada do projeto usando sintaxe do Markdown. Crie um título para o projeto. Descreva a equipe e
@@ -687,7 +685,7 @@ library(dplyr)
 
 ```{r, prompt=TRUE}
 iris %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -695,7 +693,7 @@ iris %>%
 ```{r, eval = FALSE, prompt=TRUE}
 iris %>% 
   filter(Species == "setosa") %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -703,7 +701,7 @@ iris %>%
 ```{r, prompt=TRUE}
 iris %>% 
   filter(Species == "setosa") %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -711,7 +709,7 @@ iris %>%
 ```{r, eval=FALSE, prompt=TRUE}
 iris %>% 
   select(Species, ends_with("Width")) %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -719,7 +717,7 @@ iris %>%
 ```{r, prompt=TRUE}
 iris %>% 
   select(Species, ends_with("Width")) %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -751,7 +749,7 @@ grid()
 ```{r, eval=FALSE, prompt=TRUE}
 iris %>% 
   arrange(desc(Sepal.Length)) %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -759,7 +757,7 @@ iris %>%
 ```{r, prompt=TRUE}
 iris %>% 
   arrange(desc(Sepal.Length)) %>% 
-  as_tibble()
+  head()
 ```
 
 ## dplyr -- Exemplos
@@ -826,6 +824,27 @@ iris %>%
   plot() %>%
   text(use.n = TRUE)
 ```
+
+# febr | Repositório Brasileiro Livre para Dados Abertos do Solo
+
+## febr (www.ufsm.br/febr/)
+
+<iframe src="http://www.ufsm.br/febr/"></iframe>
+
+## Repositório Brasileiro Livre para Dados Abertos do Solo
+
+Conforme dito anteriormente, nós vamos realizar alguns exercícios utilizando os dados de um estudo realizado 
+por Braga e colaboradores sobre as alteração do pH do solo por influência da diluição, tipo de solvente e 
+tempo de contato. O objetivo desses exercícios será replicar as análises estatísticas do artigo, cujos dados
+estão disponíveis no ___febr___, conjunto de dados `ctb0041`.
+
+# GitHub | Desenvolvimento colaborativo
+
+## GitHub -- Desenvolvimento colaborativo
+
+<iframe src="https://github.com/"></iframe>
+
+
 
 <!-- Using `packrat` with git for (better) version control -->
 
