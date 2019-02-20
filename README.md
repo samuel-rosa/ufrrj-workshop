@@ -1,6 +1,6 @@
 # Análise de dados e redação científica colaborativos -- R & CIA
 
-Local: Programa de Pós-Graduação em Educação Agrícola (PPGA) da Universidade Federal Rural do Rio de Janeiro (UFRRJ)<br>
+Local: Programa de Pós-Graduação em Agronomia--Ciência do Solo (PPGA-CS) da Universidade Federal Rural do Rio de Janeiro (UFRRJ)<br>
 Data: 19--21 de fevereiro de 2019<br>
 Carga horária: 16 horas<br>
 Público: mestrandos, doutorandos, pós-doutorandos e professores
@@ -27,7 +27,8 @@ Os tópicos a serem abordados na oficina são os seguintes:
     + [Pipes][pipes] -- Operadores que tornam seu código mais legível
     + [dplyr][dplyr] -- Gramática de manipulação de dados
 4. Ambiente de análise de dados e redação científica colaborativos
-    + Compartilhamento de código fonte: [GitHub][github]
+    + [febr][febr] -- Repositório Brasileiro Livre para Dados Abertos do Solo
+    + [GitHub][github] -- Desenvolvimento colaborativo
     + Produção de documentos científicos:
         - Equações matemáticas: [LaTeX][latex]
         - [`knitr`][knitr] e [pandoc][pandoc]
